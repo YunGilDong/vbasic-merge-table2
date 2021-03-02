@@ -1,0 +1,182 @@
+
+// $bg-color-gray: #f1f1f1;
+
+// .disnone {
+//   display: none;
+// }
+
+// .tcontainer {
+//   height: 100%;
+//   width: 100%;  
+//   background-color: $bg-color-gray;  
+//   display: flex;
+//   flex-direction: column;
+//   overflow: auto;
+
+//   .ttable {
+//     width: 100%;
+//     display: table;
+//     table-layout: fixed;
+//     border-spacing: 0;
+//     border-color: grey;
+    
+//   }
+
+//   .tTableDbContainer {
+//     //height: 100%;
+//     //width: 100%;  
+//     flex: 1;
+//     background-color: gary;  
+//     overflow: auto;
+//   }
+
+//   .tFixedHeader {
+//     position: sticky;
+//     top:0;
+//   }
+
+//   // .tMergeTableHeader {
+//   //   width: 100%;
+//   //   //min-width: 100%;    // 이걸 조정해야햠.
+//   //   display: table;
+//   //   table-layout: auto;
+//   //   border-spacing: 0;
+//   //   border-color: grey;        
+//   // }
+
+//   .tMergeTable {
+//     width: 100%;
+//     min-width: 100%;    // 이걸 조정해야햠.
+//     display: table;
+//     table-layout: auto;
+//     border-spacing: 0;
+//     border-color: grey;    
+//   }
+  
+//   @at-root .theader {
+//     // padding: 5px 3px 5px 3px;
+//     //height: 30px;
+//     font-size: 13px;
+//     text-align: center;
+//     background-color: #C1C1C1;
+//     display: table-header-group;
+//     width: 100%;
+
+//     border-bottom: 1px solid rgba(224, 224, 224, 1);
+//     border-right: 1px solid rgba(160, 160, 160, 1);  
+
+//     .ttr {
+//       height: 30px;
+//       color: inherit;
+//       display: table-row;
+//       outline: 0;
+
+//       .tth {
+//       display: table-cell;
+//       vertical-align: inherit;
+//       color: #263238;
+//       background: #C1C1C1;
+//       }
+//     } 
+//   }
+
+//   @at-root .ttbody {
+//     //font-size: 12px;
+//     text-align: center;  
+      
+
+//     .ttr {
+//       color: inherit;
+//       display: table-row;
+//       outline: 0;
+    
+//       &:hover {
+//           background-color: #B2CCFF;
+//        }
+//       .ttd {
+//         color: #263238;
+//         display: table-cell;
+//         //width: 25%;
+//         font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+        
+//         border-bottom: 1px solid rgba(224, 224, 224, 1);
+//         vertical-align: inherit;
+//         overflow: hidden; 
+//         //padding: 3px 3px 3px 3px;
+
+        
+//       }      
+
+//       .ttdBorder {        
+//         // 전체 셀에 border를 다 주어야 컬럼 셀과 일치해짐!
+//         border-right: 1px solid rgba(160, 160, 160, 1);
+
+//       }
+
+//       @at-root .ttr-selected {
+//         background-color: rgba(63, 81, 181, 0.18);
+//       }
+
+//       @at-root .td-selected {
+//         background-color: rgba(63, 81, 181, 0.18);
+//       }
+//     }
+//   }
+// }
+
+// .highlightCol {
+//   background-color: #81fac2;
+// }
+
+// .cellSmall {
+//   padding: 1px 1px 1px 1px;
+//   font-size: 11px;
+// }
+
+// .cellNormalSize {
+//   padding: 3px 3px 3px 3px;
+//   font-size: 12px;
+// }
+
+// .tTxt {
+// 	align: center;
+// 	align-item: center;
+// 	width: 80%;
+// 	& input {
+// 	  text-align: center;
+// 	  padding: 0 0;
+// 	  font-size: 12;
+// 	}
+// }
+
+// .tTxt2 {
+// 	align: center;
+// 	align-item: center;
+//   width: 80%;
+//   border: 0;
+//   background-color: inherit;
+//   text-align: center;
+// 	& input {
+// 	  text-align: center;
+// 	  padding: 0 0;
+//     font-size: 12;
+// 	}
+// }
+
+// .eopColor {
+//   background-color: #b36d6d;
+// }
+
+
+// .colBgColor {
+//   background-color: #C1C1C1;
+// }
+
+
+// .cellbgRed {
+//   background-color: #b36d6d;
+// }
+
+// .middleBgColor {
+//   background-color:  #ddddff;
+// }

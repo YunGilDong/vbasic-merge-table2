@@ -1,0 +1,45 @@
+.localListLayout {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  //grid-template-rows: 0.1fr 2fr 0.1fr;
+  //grid-template-rows: 30px 80% 30px;
+  grid-template-rows: auto 200px 30px;
+  grid-template-areas:
+  "locsearchL"
+  "loctableL"
+  "loctableFootL";
+
+  grid-gap: 0.1rem;
+  //justify-items: stretch;
+
+  // search bar
+  .locsearchL {
+      grid-area: locsearchL;
+      display: flex;
+      width: 100%;
+      padding: 2px 4px;
+      align-items: center;
+      background-color: #abc0c7;
+  }
+
+  // local table
+  .loctableL{
+      //height: 200px;
+      grid-area: loctableL;
+      //background-color: #4d686d;        
+      overflow: auto;
+  }
+
+  // table footer
+  .loctableFootL {
+      grid-area: loctableFootL;
+      display: flex;
+      width: 100%;
+      background-color: #b36d6d;
+      align-items: center;
+      padding-left: 5px;
+      overflow: auto;
+  }
+}
+

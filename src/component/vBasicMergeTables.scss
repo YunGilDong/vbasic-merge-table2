@@ -1,6 +1,6 @@
 
 .vtContainer {
-    display: inline-block;
+    display: block;
     height: 100%;
     width: 100%;
     border: 1px solid rgba(34, 36, 38, 0.1);
@@ -13,17 +13,15 @@
       overflow: auto;
     }
     .vtable {
-      border-collapse: collapse;
       display: block;
     }
 
     tbody {
       position: relative;
-      display: inline-block;      
-      //display: block;
+      display: block;
       width: 100%;
       position: 0;
-      //display:table-row-group;
+
     }
   
     th {
@@ -42,9 +40,6 @@
     th, td {
       text-align: center;      
       font-weight: bold;
-      text-transform: uppercase;
-      font-family: sans-serif;
-      width: 6rem;  
     }
     
     td {
@@ -56,6 +51,7 @@
     tr {
       height: 30px;
       max-height: 35px; 
+      
     }
   
     .tr-odd {

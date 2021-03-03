@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import clsx from "clsx";
 import TextField, {ChkBox, Sg3TxtField, NumberField} from './CellComp';
 import "./BasicTable.scss";
-import "./vBasicMergeTables.scss";
+import "./vBasicMergeTables2.scss";
 
 const SMALL_HEIGHT = 24;
 const NORMAL_HEIGHT = 30;
@@ -25,21 +25,17 @@ class VBasicMergeTable extends React.Component {
     this.state = {
       selectedIdx: 0,
       selectedCol: "",      
+      firstColPx: 0,
 
-      tableHeight: (this.props.rowHeight * this.props.rows.length),
+      tableHeight: (this.props.rowHeight * this.props.rows.length),   // tbody height
       scroll: {
         top: 0,
         index: 0,
       }      
     };
-
-    this.onScroll = this.onScroll.bind(this)
-    this.scrollInterval = null    
   }
 
   componentDidMount() {
-
-    //console.log("bmtb componentDidMount")
 
     this.tableData=[];
     this.props.rows.map((row, rowIdx) => {
@@ -50,23 +46,44 @@ class VBasicMergeTable extends React.Component {
         this.tableData.push(rowData);
     })
 
+    // Init vitualization table info(height, index, end index)
+    this.tableDivH = document.getElementById('vTableDiv').clientHeight;
+    console.log("vBasicMergeTable componentDidMount :", this.tableDivH);
+    this.end = Math.ceil((this.tableDivH * 1) / this.props.rowHeight);
 
-    this.tbDivHeight = document.getElementById('vtDiv3').clientHeight;
+    console.log("comdidM : ", this.props.rowHeight, this.tableDivH);
 
-    console.log("vBasicMergeTable componentDidMount :", this.tbDivHeight);
-    this.tableDivH = this.tbDivHeight;
-    this.end = Math.ceil((this.tbDivHeight * 1) / this.props.rowHeight);
-
-    console.log("comdidM : ", this.props.rowHeight, this.tbDivHeight);
-
+    // 초기화 정보를 기반으로 rerender
     if(!this.firstRender) {
       this.firstRender = true;
       this.forceUpdate();
     }
+
+    // window evnet listener
+    // window.addEventListener('resize', this.onResize)
   }
 
-  onScroll({ target }) {
+  // onResize = () => {
+  //   let clientWidth  = document.getElementById('vTableDiv').clientWidth;
+
+  //   console.log("[onResize]clientWidth : ", clientWidth);
+
+  //   // 첫번째 컬럼 px스로 변경
+  //   console.log("this.props.refColumns[0] : ", parseFloat(this.props.refColumns[0].width));
+  //   let percent = parseFloat(this.props.refColumns[0].width);
+  //   let firstColPx = Math.ceil(clientWidth / percent);
+
+  //   console.log("firstColPx :", firstColPx);
+  //   this.setState({
+  //     firstColPx: firstColPx,
+  //   })
+
+  // }
+
+  onScroll = ({ target }) => {
     let state = this.state;
+
+    console.log("target scroll : ", target.scrollTop);
 
     let scrollTop = target.scrollTop;
     let rowHeight = this.props.rowHeight;
@@ -77,7 +94,7 @@ class VBasicMergeTable extends React.Component {
 
     this.end = index + Math.ceil((tableHeight * 1) / rowHeight);
 
-    console.log("scrollTop : ", scrollTop, index, this.end, rowHeight);
+    console.log("scrollTop : ", scrollTop, index, this.end, rowHeight, state.scroll.top);
 
 
     this.setState(state);
@@ -100,6 +117,7 @@ class VBasicMergeTable extends React.Component {
       const rowAttrs = {
         style: {
           position: "absolute",
+          //position: "relative",
           top: (index * rowHeight),
           left: 0,
           height: rowHeight,
@@ -111,16 +129,18 @@ class VBasicMergeTable extends React.Component {
 
       items.push(
         <tr {...rowAttrs} key={index}>
+
+          {/* empty td for full percent width */}
+          <td style={{padding: 1, border: 0}}></td>
           {this.props.refColumns.map((col, colIdx) => {
 
             let width = col.width;
-            let minWidth = col.minWidth;
-            // if(col.id === "col4") {
-            //   width = col.width-20;
-            // }
+            let minWidth = col.minWidth;            
+
+            
 
             return (
-              <td key={colIdx} style={{width: `calc(${width})`, minWidth: minWidth}}>
+              <td className={clsx(colIdx===0?"borderZero":"")} key={colIdx} style={{width: `calc(${width})`, minWidth: minWidth}}>
               {/* <td key={colIdx} style={{flex: `1 0 auto`}}> */}
                 {rows[index][col.id]}
               </td>
@@ -325,11 +345,14 @@ class VBasicMergeTable extends React.Component {
 
   render() {
 
-    let tbHeight = (this.tableDivH > this.state.tableHeight)
-    ? this.state.tableHeight + 2
-    : this.tableDivH;
+    // -- div가 더 클경우 rowlen에 맞춤
+    // let tbHeight = (this.tableDivH > this.state.tableHeight)
+    // ? this.state.tableHeight + 2
+    // : this.tableDivH;
 
-    let tableHeight = this.state.tableHeight;
+    let tbHeight = this.tableDivH;
+    console.log("this.tableDivH : ", this.tableDivH);
+    let tableHeight = this.state.tableHeight;   // rowHeight * rowsLen (body height)
 
     let rows = this.props.rows.slice(0, this.props.rows.length);
     //let rows = this.props.rows.slice(0, 12);    
@@ -339,7 +362,6 @@ class VBasicMergeTable extends React.Component {
     let containerH = this.props.containerHeight;
     let containerSy = {};
     if (containerH === "auto") {
-      //containerSy.maxHeight = "1350px";
       containerSy.height = "auto";
     } else {
       containerSy.height = containerH;
@@ -383,7 +405,7 @@ class VBasicMergeTable extends React.Component {
     }
 
     return (
-      <div id="vtDiv3" style={{height: "100%"}}>
+      <div id="vTableDiv" style={{height: "100%"}}>
         <div className="vtContainer">
           <table
             className="table vtable"
@@ -404,14 +426,20 @@ class VBasicMergeTable extends React.Component {
                 }
 
                 let stickyPos = 0;
-                stickyPos = (this.props.cellSmall === true) ? stickyPos = SMALL_HEIGHT*rowIdx : stickyPos = NORMAL_HEIGHT*rowIdx;
+                //stickyPos = (this.props.cellSmall === true) ? stickyPos = SMALL_HEIGHT*rowIdx : stickyPos = NORMAL_HEIGHT*rowIdx;
+                stickyPos = this.props.rowHeight*rowIdx;
                 
                 return (
                   // <tr className={clsx(colTRstyle, this.props.cellSmall === true?"colSmall":"colSmall")} key={rowIdx} >
-                  <tr className={clsx(colTRstyle, "tr")} key={rowIdx} style={{width: '100%'}} >
+                  <tr className={clsx(colTRstyle, "tr")} key={rowIdx} style={{width: '100%', height: this.props.rowHeight}} >
+                    
+                    {/* empty th for full percent width */}
+                    <th style={{padding: 1, border: 0, position: "sticky", top:stickyPos}}></th>
+
                     {Array.isArray(cols) && cols.map((col, colIdx) => {
                       let colStyle = col.width;
                       let minWidth = col.minWidth;
+
                       if (col.width === "auto") {
                         colStyle = "";
                       }
@@ -430,7 +458,7 @@ class VBasicMergeTable extends React.Component {
                       if (!this.checkPassIndex(rowIdx, colIdx)) {
                         return (
                           <th
-                            className={clsx("theader tth", this.props.cellSmall === true?"ttrSmall":"ttrNormal")}
+                            className={clsx("theader tth", this.props.cellSmall === true?"ttrSmall":"ttrNormal", colIdx===0?"borderZero":"")}
                             style={{ width: `calc(${colStyle})`, minWidth:minWidth , position: "sticky", top:stickyPos}}
                             //style={{flex: `1 0 auto` , position: "sticky", top:stickyPos}}
                             key={key}

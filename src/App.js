@@ -6,28 +6,28 @@ function createRow(id, name, text, chkB) {
   return id, name, text, chkB;
 }
 const column1 = [
-  {id: "ppc",  text: "PPC제어", type: "value",    width: "10%", minWidth: "70px", rowSpan: { r: 0, c: 0, count: 2 }},
+  {id: "ppc",  text: "PPC제어", type: "value",    width: "5%", minWidth: "70px", rowSpan: { r: 0, c: 0, count: 2 }},
   //{id: "state",text: "상태", type: "value", width: "15%", rowSpan: { r: 0, c: 1, count: 2 }, colSpan: { r: 0, c: 1, count: 2 }},
   {id: "state",text: "상태",    type: "value",    width: "20%", minWidth: "70px", colSpan: { r: 0, c: 1, count: 2 }},
-  {id: "aring",text: "A링",     type: "value",    width: "60px", minWidth: "70px", colSpan: { r: 0, c: 3, count: 3 }},
+  {id: "aring",text: "A링",     type: "value",    width: "30%", minWidth: "70px", colSpan: { r: 0, c: 3, count: 3 }},
   {id: "bring",text: "B링",     type: "value",    width: "30%", minWidth: "70px", colSpan: { r: 0, c: 6, count: 3 }},
-  {id: "chk"  ,text: "chk",     type: "checkbox", width: "40%", minWidth: "70px",}
+  {id: "chk"  ,text: "chk",     type: "checkbox", width: "15%", minWidth: "70px", rowSpan: { r: 0, c: 9, count: 2 }}
 ];
 
 const column2 = [
-  { id: "ppc", text: "1", type: "text", width: "10%", minWidth: "70px" },
+  { id: "ppc", text: "1", type: "text", width: "5%", minWidth: "70px" },
 
   { id: "state1", text: "stt1", type: "text", width: "10%", minWidth: "70px" },
   { id: "state2", text: "stt2", type: "text", width: "10%", minWidth: "70px" },
 
-  { id: "aHold", text: "A-Hold", type: "text", width: "20px", minWidth: "70px" },
-  { id: "aOff", text: "A-Off", type: "text", width: "20px", minWidth: "70px" },
-  { id: "aJmp", text: "A-Jmp", type: "text", width: "20px", minWidth: "70px" },
+  { id: "aHold", text: "A-Hold", type: "text", width: "10%", minWidth: "70px" },
+  { id: "aOff", text: "A-Off", type: "text", width: "10%", minWidth: "70px" },
+  { id: "aJmp", text: "A-Jmp", type: "text", width: "10%", minWidth: "70px" },
 
   { id: "bHold", text: "B-Hold", type: "text", width: "10%", minWidth: "70px" },
   { id: "bOff", text: "B-Off", type: "text", width: "10%", minWidth: "70px" },
   { id: "bJmp", text: "B-Jmp", type: "sg3", width: "10%", minWidth: "70px" },
-  {id: "chk",text: "chk123123123", type: "checkbox", width: "40%", minWidth: "70px"}
+  {id: "chk",text: "chk123123123", type: "checkbox", width: "15%", minWidth: "70px"}
 ];
 
 const rows1 = [
@@ -68,7 +68,6 @@ function makeRows(count) {
   }
   return arrRows;
 }
-
 
 class App extends React.Component {
   constructor(props) {
@@ -208,7 +207,7 @@ class App extends React.Component {
         
         <div style={{ height: "100%", width:"99%" }}>
           <VBasicMergeTable
-            rowHeight={30}
+            rowHeight={25}
             userRef={this.inputRefB}
             columns={column12}
             refColumns={column2}

@@ -131,7 +131,7 @@ class VBasicMergeTable extends React.Component {
         <tr {...rowAttrs} key={index}>
 
           {/* empty td for full percent width */}
-          <td style={{padding: 1, border: 0}}></td>
+          <td style={{width: '1px' , padding: 0, border: 0}}> </td>
           {this.props.refColumns.map((col, colIdx) => {
 
             let width = col.width;
@@ -434,7 +434,7 @@ class VBasicMergeTable extends React.Component {
                   <tr className={clsx(colTRstyle, "tr")} key={rowIdx} style={{width: '100%', height: this.props.rowHeight}} >
                     
                     {/* empty th for full percent width */}
-                    <th style={{padding: 1, border: 0, position: "sticky", top:stickyPos}}></th>
+                    <th style={{width: '1px', padding: 0, border: 0, position: "sticky", top:stickyPos}}> </th>
 
                     {Array.isArray(cols) && cols.map((col, colIdx) => {
                       let colStyle = col.width;

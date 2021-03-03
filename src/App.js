@@ -11,7 +11,7 @@ const column1 = [
   {id: "state",text: "상태",    type: "value",    width: "20%", minWidth: "70px", colSpan: { r: 0, c: 1, count: 2 }},
   {id: "aring",text: "A링",     type: "value",    width: "30%", minWidth: "70px", colSpan: { r: 0, c: 3, count: 3 }},
   {id: "bring",text: "B링",     type: "value",    width: "30%", minWidth: "70px", colSpan: { r: 0, c: 6, count: 3 }},
-  {id: "chk"  ,text: "chk",     type: "checkbox", width: "15%", minWidth: "70px", rowSpan: { r: 0, c: 9, count: 2 }}
+  {id: "chk"  ,text: "chk",     type: "checkbox", width: "20%", minWidth: "70px", rowSpan: { r: 0, c: 9, count: 2 }}
 ];
 
 const column2 = [
@@ -27,7 +27,7 @@ const column2 = [
   { id: "bHold", text: "B-Hold", type: "text", width: "10%", minWidth: "70px" },
   { id: "bOff", text: "B-Off", type: "text", width: "10%", minWidth: "70px" },
   { id: "bJmp", text: "B-Jmp", type: "sg3", width: "10%", minWidth: "70px" },
-  {id: "chk",text: "chk123123123", type: "checkbox", width: "15%", minWidth: "70px"}
+  {id: "chk",text: "chk123123123", type: "checkbox", width: "20%", minWidth: "70px"}
 ];
 
 const rows1 = [

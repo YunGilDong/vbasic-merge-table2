@@ -5,13 +5,14 @@ import "./App.scss";
 function createRow(id, name, text, chkB) {
   return id, name, text, chkB;
 }
+
 const column1 = [
   {id: "ppc",  text: "PPC제어", type: "value",    width: "5%", minWidth: "70px", rowSpan: { r: 0, c: 0, count: 2 }},
   //{id: "state",text: "상태", type: "value", width: "15%", rowSpan: { r: 0, c: 1, count: 2 }, colSpan: { r: 0, c: 1, count: 2 }},
   {id: "state",text: "상태",    type: "value",    width: "20%", minWidth: "70px", colSpan: { r: 0, c: 1, count: 2 }},
   {id: "aring",text: "A링",     type: "value",    width: "30%", minWidth: "70px", colSpan: { r: 0, c: 3, count: 3 }},
   {id: "bring",text: "B링",     type: "value",    width: "30%", minWidth: "70px", colSpan: { r: 0, c: 6, count: 3 }},
-  {id: "chk"  ,text: "chk",     type: "checkbox", width: "20%", minWidth: "70px", rowSpan: { r: 0, c: 9, count: 2 }}
+  {id: "chk"  ,text: "chk",     type: "checkbox", width: "15%", minWidth: "70px", rowSpan: { r: 0, c: 9, count: 2 }}
 ];
 
 const column2 = [
@@ -27,8 +28,33 @@ const column2 = [
   { id: "bHold", text: "B-Hold", type: "text", width: "10%", minWidth: "70px" },
   { id: "bOff", text: "B-Off", type: "text", width: "10%", minWidth: "70px" },
   { id: "bJmp", text: "B-Jmp", type: "sg3", width: "10%", minWidth: "70px" },
-  {id: "chk",text: "chk123123123", type: "checkbox", width: "20%", minWidth: "70px"}
+  {id: "chk",text: "chk123123123", type: "checkbox", width: "15%", minWidth: "70px"}
 ];
+
+// const column1 = [
+//   {id: "ppc",  text: "PPC제어", type: "value",    width: "35%", minWidth: "70px", rowSpan: { r: 0, c: 0, count: 2 }},
+//   //{id: "state",text: "상태", type: "value", width: "15%", rowSpan: { r: 0, c: 1, count: 2 }, colSpan: { r: 0, c: 1, count: 2 }},
+//   {id: "state",text: "상태",    type: "value",    width: "20%", minWidth: "70px", colSpan: { r: 0, c: 1, count: 2 }},
+//   {id: "aring",text: "A링",     type: "value",    width: "60px", minWidth: "70px", colSpan: { r: 0, c: 3, count: 3 }},
+//   {id: "bring",text: "B링",     type: "value",    width: "30%", minWidth: "70px", colSpan: { r: 0, c: 6, count: 3 }},
+//   {id: "chk"  ,text: "chk",     type: "checkbox", width: "15%", minWidth: "70px", rowSpan: { r: 0, c: 9, count: 2 }}
+// ];
+
+// const column2 = [
+//   { id: "ppc", text: "1", type: "text", width: "35%", minWidth: "70px" },
+
+//   { id: "state1", text: "stt1", type: "text", width: "10%", minWidth: "70px" },
+//   { id: "state2", text: "stt2", type: "text", width: "10%", minWidth: "70px" },
+
+//   { id: "aHold", text: "A-Hold", type: "text", width: "20px", minWidth: "70px" },
+//   { id: "aOff", text: "A-Off", type: "text", width: "20px", minWidth: "70px" },
+//   { id: "aJmp", text: "A-Jmp", type: "text", width: "20px", minWidth: "70px" },
+
+//   { id: "bHold", text: "B-Hold", type: "text", width: "10%", minWidth: "70px" },
+//   { id: "bOff", text: "B-Off", type: "text", width: "10%", minWidth: "70px" },
+//   { id: "bJmp", text: "B-Jmp", type: "sg3", width: "10%", minWidth: "70px" },
+//   {id: "chk",text: "chk123123123", type: "checkbox", width: "15%", minWidth: "70px"}
+// ];
 
 const rows1 = [
   { ppc: "불가능1", state1: "Standby", state2: "긴급", aHold: "Hold", aOff: "Off", aJmp: "jmp", bHold: "Hold", bOff: "Off", bJmp: 1, chk: 1 },
@@ -64,7 +90,7 @@ const rows1 = [
 function makeRows(count) {
   let arrRows = [];
   for (let idx = 0; idx < count; idx++) {
-    arrRows.push({ ppc: "불가능1"+String(idx+1), state1: "Standby", state2: "긴급", aHold: "Hold", aOff: "Off", aJmp: "jmp", bHold: "Hold", bOff: "Off", bJmp: 1, chk: 1 },);
+    arrRows.push({ ppc: "불가능"+String(idx+1), state1: "Standby", state2: "긴급", aHold: "Hold", aOff: "Off", aJmp: "jmp", bHold: "Hold", bOff: "Off", bJmp: 1, chk: 1 },);
   }
   return arrRows;
 }
@@ -194,18 +220,18 @@ class App extends React.Component {
     let column12 = [];
     column12[0] = column1;
     column12[1] = column2;
-    let rows = makeRows(10000);
+    let rows = makeRows(1000);
 
     return (
       <div style={{height:'95vh', width:'100%'}}>
-        <button onClick={this.ButtonEvent}>
+        {/* <button onClick={this.ButtonEvent}>
           test
         </button>
         <button onClick={this.ButtonEvent2}>
           get
-        </button>
+        </button> */}
         
-        <div style={{ height: "100%", width:"99%" }}>
+        <div style={{ height: "80%", width:"80%" }}>
           <VBasicMergeTable
             rowHeight={25}
             userRef={this.inputRefB}

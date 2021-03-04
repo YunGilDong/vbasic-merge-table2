@@ -14,7 +14,7 @@ class VBasicMergeTable extends React.Component {
 
     this.passRowColIdx = [];
     this.propsRows = []; // shouldComponentUpdate 비교용도
-    this.tableData = [];    // 실시간 테이블 데이터 관리\
+    this.tableData = [];    // 실시간 테이블 데이터 관리
     this.prevTableData = [];    // 실시간 테이블 데이터 관리
 
     this.firstRender = false;
@@ -58,6 +58,10 @@ class VBasicMergeTable extends React.Component {
       this.firstRender = true;
       this.forceUpdate();
     }
+
+    let divWidth = document.getElementById('vTableDiv').clientWidth;
+    console.log('divWidth : ',divWidth);
+
 
     // window evnet listener
     // window.addEventListener('resize', this.onResize)
@@ -117,6 +121,8 @@ class VBasicMergeTable extends React.Component {
       const rowAttrs = {
         style: {
           position: "absolute",
+          display: "flex",
+          flexWrap: 'nowrap',
           //position: "relative",
           top: (index * rowHeight),
           left: 0,
@@ -131,22 +137,32 @@ class VBasicMergeTable extends React.Component {
         <tr {...rowAttrs} key={index}>
 
           {/* empty td for full percent width */}
-          <td style={{width: '1px' , padding: 0, border: 0}}> </td>
+          {/* <td style={{width: '1px' , padding: 0, border: 0}}> </td> */}
+
+          
+          
           {this.props.refColumns.map((col, colIdx) => {
 
-            let width = col.width;
+            let width = col.width
             let minWidth = col.minWidth;            
-
-            
+            //let strWidth = String("~'")+String(col.width)+"-"+String("3px'");
+            console.log("td width : ", parseFloat(width));
+            let width2 = parseFloat(width) - 0.08;
+            let strWidth = String(width2)+"%";
+            //let strWidth = width;
 
             return (
-              <td className={clsx(colIdx===0?"borderZero":"")} key={colIdx} style={{width: `calc(${width})`, minWidth: minWidth}}>
-              {/* <td key={colIdx} style={{flex: `1 0 auto`}}> */}
+              
+              // <td className={clsx(colIdx===0?"borderZero":"")} key={colIdx} style={{width: `calc(${width})`, minWidth: minWidth}}>
+              // <td key={colIdx} style={{width: `calc(${width})`, minWidth: minWidth}}>
+              <td key={colIdx} style={{width: width, minWidth: minWidth}}>
+              {/* <td key={colIdx} style={{flex: `0 0 calc(${width}`, minWidth: minWidth}}> */}
                 {rows[index][col.id]}
               </td>
             )
           })
           }
+
         </tr>
       )    
       index++
@@ -408,15 +424,17 @@ class VBasicMergeTable extends React.Component {
       <div id="vTableDiv" style={{height: "100%"}}>
         <div className="vtContainer">
           <table
-            className="table vtable"
-            style={{ minWidth: tableMinWidth, height: tbHeight }}
+            className="vtable"
+            style={{ height: tbHeight }}
             onScroll={this.onScroll}
           >
+            <div className="tHeaderTable" style={{position: "sticky", top:0, zIndex:2}}>
             <thead
               className={clsx(
                 this.props.headerVisible === true ? "theader" : "disnone"
               )}
             >
+              
               {this.props.columns.map((cols, rowIdx) => {
                 let colTRstyle = "ttr";
                 if (typeof this.props.colVisible != "undefined" && this.props.colVisible.length > 0) {
@@ -431,10 +449,11 @@ class VBasicMergeTable extends React.Component {
                 
                 return (
                   // <tr className={clsx(colTRstyle, this.props.cellSmall === true?"colSmall":"colSmall")} key={rowIdx} >
+                  
                   <tr className={clsx(colTRstyle, "tr")} key={rowIdx} style={{width: '100%', height: this.props.rowHeight}} >
                     
                     {/* empty th for full percent width */}
-                    <th style={{width: '1px', padding: 0, border: 0, position: "sticky", top:stickyPos}}> </th>
+                    {/* <th style={{width: '1px', padding: 0, border: 0, position: "sticky", top:stickyPos}}> </th> */}
 
                     {Array.isArray(cols) && cols.map((col, colIdx) => {
                       let colStyle = col.width;
@@ -457,8 +476,15 @@ class VBasicMergeTable extends React.Component {
 
                       if (!this.checkPassIndex(rowIdx, colIdx)) {
                         return (
-                          <th
-                            className={clsx("theader tth", this.props.cellSmall === true?"ttrSmall":"ttrNormal", colIdx===0?"borderZero":"")}
+                          // <th
+                          //   className={clsx("theader tth", this.props.cellSmall === true?"ttrSmall":"ttrNormal", colIdx===0?"borderZero":"")}
+                          //   style={{ width: `calc(${colStyle})`, minWidth:minWidth , position: "sticky", top:stickyPos}}
+                          //   //style={{flex: `1 0 auto` , position: "sticky", top:stickyPos}}
+                          //   key={key}
+                          //   rowSpan={rSpan}
+                          //   colSpan={cSpan}
+                          // >
+                          <th                            
                             style={{ width: `calc(${colStyle})`, minWidth:minWidth , position: "sticky", top:stickyPos}}
                             //style={{flex: `1 0 auto` , position: "sticky", top:stickyPos}}
                             key={key}
@@ -474,10 +500,18 @@ class VBasicMergeTable extends React.Component {
                 );
               })}
             </thead>
+            </div>
           {/* </table>
-          <table className="tMergeTable" style={{ minWidth: tableMinWidth }}> */}
+          <table className="tMergeTable" style={{ minWidth: tableMinWidth }}> */}          
+          
             <tbody className="ttbody tbody" style={{height: tableHeight, maxHeight: tableHeight}}>
-              {this.generateRows()}
+              {/* <div className="tbodyTable"> */}
+                {this.generateRows()}
+              {/* </div> */}
+              
+                
+              
+              
               {/* {rows.map((row, rowIdx) => {
                 
                 return (

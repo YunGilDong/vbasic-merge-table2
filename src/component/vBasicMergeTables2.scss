@@ -4,40 +4,68 @@
   height: 100%;
   width: 100%;
   border: 1px solid rgba(34, 36, 38, 0.1);
-  font-size: 10px;
+  font-size: 10px;  
+  //box-sizing: border-box;
 
   table {
     width: 100%;
-    border-style: none;
     border-collapse: collapse;
-    table-layout: fixed;
-
-    overflow: auto;
+    overflow: auto;    
   }
   .vtable {
     display: block;
-  }
+    width: 100%;
+    
+  }  
 
-  tbody {
-    position: relative;
-    //display: block;
+  .tHeaderTable {
     display: table;
     width: 100%;
-    position: 0;
   }
 
   thead {
-    // display: table;
+    // display: block;
+    // width: 100%;  
+
+    // position: relative;
+    // display: block;
     // width: 100%;
-    // table-layout: fixed;
+    // position: 0;    
+  }  
+
+  .blockBody {
+    width: 100%;
+    display: block;
+  }
+
+  .tbodyTable {
+    display: table;
+    position: relative;
+    width: 100%;    
+  }
+
+  tbody {
+    //box-sizing: border-box;
+    position: relative;
+    display: block;
+    width: 100%;
+  }
+
+  .inBlock {
+    display: inline-block;
+    width: 100%;
   }
 
   th {
     background-color: rgb(143, 140, 140);
-    color: black;    
-    border: 1px solid rgba(34, 36, 38, 0.1);
+    color: black;
+    //border: 1px solid rgba(34, 36, 38, 0.1);
+    border-right: 1px solid rgba(34, 36, 38, 0.1);
+    border-bottom: 1px solid rgba(34, 36, 38, 0.1);    
     font-size: 1.1em;
     z-index: 2;
+
+    box-sizing: border-box;
   }
 
   .fixedHeader {
@@ -46,22 +74,25 @@
   }
 
   th, td {
-    text-align: center;
+    text-align: center;      
     font-weight: bold;
+    box-sizing: border-box;
   }
   
   td {
-    color: green;
-    border-left: 1px solid rgba(34, 36, 38, 0.1);
-    border-right: 1px solid rgba(34, 36, 38, 0.1);    
-    
+    color: green;    
+    border-right: 1px solid rgba(34, 36, 38, 0.1);
+    // border-bottom: 1px solid rgba(34, 36, 38, 0.1);    
+    //border: 1px solid rgba(34, 36, 38, 0.1);
     font-size: 1em;
+    padding: 1;
+    //display: inline-block;
+    //display: flex;
   }
 
   tr {
     height: 30px;
-    max-height: 35px; 
-    
+    max-height: 35px;     
   }
 
   .tr-odd {
@@ -72,7 +103,7 @@
     background-color: #fcfcfc;
   }
 
-  .borderZero {
-    border: 0;
+  .testW {
+    width: calc(10%-3px);
   }
 }
